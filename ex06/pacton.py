@@ -1,8 +1,6 @@
 import pygame as pg
 import sys
-import random
 from random import randint #加藤結衣
-import copy
 
 #追加1
 WINDOW = (1600, 900)
@@ -18,7 +16,6 @@ MAP=[ #ステージ通路設定 １は壁０は通路
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ]
 #追加1
-
 
 # スクリーンに関するクラス　追加
 class Screen:
@@ -46,35 +43,9 @@ class Screen:
             else:
                 x=0
                 y+=1
-#追加
-        # self.bgi_sfc = pg.image.load("ex05/fig/pg_bg.jpg")
-        # self.bgi_rct = self.bgi_sfc.get_rect()
-        #self.rct_lst = []
-        #for y in range(len(maze_lst)):
-            #rct_lst_sub = []
-            #for x in range(len(maze_lst[y])):
-                #bgi_sfc = pg.Surface((100, 100))
-                #pg.draw.rect(bgi_sfc, color[maze_lst[y][x]], (0, 0, 100, 100))
-                #rct = bgi_sfc.get_rect()
-                #rct.center = (x*100+50, y*100+50)
-                # self.bgi_rct = self.bgi_sfc.get_rect()
-                #rct_lst_sub.append((bgi_sfc, rct))
-    
-            #self.rct_lst.append(rct_lst_sub)
-
 
     def blit(self):
-        # self.sfc.blit(self.bgi_sfc, self.bgi_rct)
-        #print(len(self.rct_lst))
-        #for sub in self.rct_lst:
-        #    for sfc_lst, rct_lst in sub:
-        #        # print(sfc_lst, rct_lst)
         self.sfc.blit(self.sfc, self.rct) 
-        # print(len(self.rct_lst))
-        # for sub in self.rct_lst:
-        #     for sfc_lst, rct_lst in sub:
-        #         # print(sfc_lst, rct_lst)
-        #         self.sfc.blit(sfc_lst,rct_lst)
     
 #ここから加藤結衣    
 # ドット作成クラス
@@ -131,7 +102,6 @@ class Bird:
         self.blit(scr)
 
 
-
 #ここから加藤結衣
 # スコアを表示するクラス 
 class Score:
@@ -147,8 +117,6 @@ class Score:
     def add_score(self, x):
         self.score += x
 #ここまで加藤結衣
-
-
 
 # 迷路に関するクラス
 class Maze:
@@ -213,23 +181,9 @@ class Food:
 
 
 def main():
-    #maze = Maze(16,9)
-
     scr = Screen("Pacton", (1600, 900))
 
-    # kkt = Bird("C:/Users/C0B21013/Documents/ProjExD2022/ProjExd-1/fig/6.png", 2.0, (800, 400))
     kkt = Bird("ex06/fig/6.png",2.0,(800, 400))
-    # food_lst = copy.deepcopy(maze.maze_lst)
-    # for y in range(len(maze.maze_lst)):
-    #     for x in range(len(maze.maze_lst[y])):
-    #         food_lst[y][x] = Food((255,255,0), 10, (x,y))
-            
-    # for y in range(len(food_lst)):
-    #     for x in range(len(food_lst[y])):
-    #         food_lst[y][x].set_food(maze.maze_lst, x, y ,scr)
-    # for y in range(len(food_lst)):
-    #     for x in range(len(food_lst[y])):
-    #         print(food_lst[y][x].flag)
     
     #ここから加藤結衣
     #赤色のドットを作成
@@ -251,10 +205,7 @@ def main():
         scr.map_draw(MAP)
         scr.blit() # 背景の作成
         kkt.update(scr)
-        # for y in range(len(food_lst)):
-        #     for x in range(len(food_lst[y])):
-        #         food_lst[y][x].updata(scr)
-
+      
         for event in pg.event.get(): # 練習2
             if event.type == pg.QUIT:
                 return
